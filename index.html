@@ -6,7 +6,7 @@
     <title>Join the Workforce | Christ New Wine</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="family">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
         /* Modern CSS Variables for Premium Branding */
@@ -142,6 +142,8 @@
             width: 100%;
             padding: 24px;
             background-color: var(--white);
+            position: relative;
+            transition: var(--transition);
         }
 
         @media (min-width: 1024px) {
@@ -204,19 +206,6 @@
             box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.1);
         }
 
-        /* Department Choice Grid (Custom Modern Radios) */
-        .dept-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 12px;
-        }
-
-        @media (min-width: 480px) {
-            .dept-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
         /* Action Button */
         .submit-btn {
             width: 100%;
@@ -231,6 +220,10 @@
             transition: var(--transition);
             box-shadow: 0 4px 12px rgba(15, 23, 42, 0.15);
             margin-top: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
         }
 
         .submit-btn:hover {
@@ -238,8 +231,50 @@
             transform: translateY(-1px);
         }
 
-        .submit-btn:active {
-            transform: translateY(0);
+        .submit-btn:disabled {
+            background-color: var(--text-light);
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Elegant Thank You State View */
+        .thank-you-view {
+            display: none;
+            text-align: center;
+            padding: 40px 10px;
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            background-color: rgba(212, 175, 55, 0.1);
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+            color: var(--gold);
+        }
+
+        .thank-you-title {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 1.75rem;
+            color: var(--primary);
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        .thank-you-message {
+            color: var(--text-light);
+            font-size: 1rem;
+            max-width: 460px;
+            margin: 0 auto 24px auto;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         /* Subtle Luxury Footer */
@@ -267,7 +302,8 @@
         </header>
 
         <main class="form-container" id="application-form">
-            <form action="YOUR_BACKEND_ENDPOINT_HERE" method="POST">
+            
+            <form id="cnw-recruitment-form" action="https://formspree.io/f/xvznwlae" method="POST">
                 
                 <div class="section-indicator">Personal Information</div>
 
@@ -326,9 +362,17 @@
                     </select>
                 </div>
 
-                <button type="submit" class="submit-btn">Submit Commitment</button>
+                <button type="submit" id="submit-btn" class="submit-btn">Submit Commitment</button>
 
             </form>
+
+            <div id="thank-you-block" class="thank-you-view">
+                <div class="success-icon">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                </div>
+                <h2 class="thank-you-title">Alignment Received</h2>
+                <p class="thank-you-message">Thank you for responding to the structural call. Your workforce submission has been logged securely into the Christ New Wine registry. A coordination team lead will reach out to you shortly.</p>
+            </div>
 
             <footer class="form-footer">
                 Christ New Wine Body • Structural Kingdom Mandate
@@ -338,11 +382,58 @@
     </div>
 
     <script>
-        // Smooth scrolling for the landing button to keep experience premium
+        // Smooth scrolling logic for header button
         document.querySelector('.cta-scroll-btn').addEventListener('click', function(e) {
             e.preventDefault();
             document.querySelector(this.getAttribute('href')).scrollIntoView({
                 behavior: 'smooth'
+            });
+        });
+
+        // Elite Interception for Formspree Free Tier Custom Redirect Handling
+        const form = document.getElementById('cnw-recruitment-form');
+        const submitBtn = document.getElementById('submit-btn');
+        const thankYouBlock = document.getElementById('thank-you-block');
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault(); // Lock native redirection
+            
+            submitBtn.disabled = true;
+            submitBtn.textContent = "Registering Commitment...";
+
+            const formData = new FormData(form);
+
+            fetch(form.action, {
+                method: form.method,
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    // Instantly hide form layout and activate classy custom success module
+                    form.style.display = 'none';
+                    thankYouBlock.style.display = 'block';
+                    
+                    // Smoothly scroll back to the component wrapper top to clear field alignment focus
+                    document.getElementById('application-form').scrollIntoView({ behavior: 'smooth' });
+                } else {
+                    response.json().then(data => {
+                        if (Object.hasOwn(data, 'errors')) {
+                            alert(data["errors"].map(error => error["message"]).join(", "));
+                        } else {
+                            alert("Submission error. Please check your network connection and try again.");
+                        }
+                    });
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = "Submit Commitment";
+                }
+            })
+            .catch(error => {
+                alert("A connection failure occurred. Please confirm your connectivity status.");
+                submitBtn.disabled = false;
+                submitBtn.textContent = "Submit Commitment";
             });
         });
     </script>
