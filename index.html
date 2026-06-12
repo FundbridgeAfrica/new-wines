@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join the Workforce | Christ New Wine</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="family">
+    
+    <style>
+        /* Modern CSS Variables for Premium Branding */
+        :root {
+            --primary: #0f172a; /* Deep Royal Slate */
+            --gold: #d4af37;    /* Elegant Kingdom Gold */
+            --gold-hover: #baa02a;
+            --text-dark: #1e293b;
+            --text-light: #64748b;
+            --bg-light: #f8fafc;
+            --white: #ffffff;
+            --radius: 12px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Responsive Layout Container: Mobile-First, Balanced Laptop View */
+        .wrapper {
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 0;
+        }
+
+        @media (min-width: 1024px) {
+            .wrapper {
+                padding: 40px 20px;
+                background: radial-gradient(circle at top right, rgba(212, 175, 55, 0.05), transparent);
+            }
+        }
+
+        /* Classy Hero & Landing Page Section */
+        .hero-section {
+            width: 100%;
+            background: linear-gradient(135deg, var(--primary) 0%, #020617 100%);
+            color: var(--white);
+            text-align: center;
+            padding: 60px 24px 40px 24px;
+            border-bottom-left-radius: 24px;
+            border-bottom-right-radius: 24px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        @media (min-width: 1024px) {
+            .hero-section {
+                max-width: 680px;
+                border-radius: var(--radius);
+                margin-bottom: 24px;
+                padding: 50px 40px;
+            }
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(212,175,55,0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .cnw-tag {
+            font-family: 'Cinzel', serif;
+            color: var(--gold);
+            font-size: 0.85rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            display: inline-block;
+            font-weight: 700;
+        }
+
+        .hero-title {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 700;
+            font-size: 2rem;
+            line-height: 1.2;
+            margin-bottom: 16px;
+            letter-spacing: -0.5px;
+        }
+
+        .hero-subtitle {
+            font-size: 0.95rem;
+            color: #94a3b8;
+            max-width: 500px;
+            margin: 0 auto 28px auto;
+            font-weight: 300;
+        }
+
+        .cta-scroll-btn {
+            background-color: var(--gold);
+            color: var(--primary);
+            border: none;
+            padding: 14px 28px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 4px 14px rgba(212, 175, 55, 0.3);
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+        }
+
+        .cta-scroll-btn:hover {
+            background-color: var(--gold-hover);
+            transform: translateY(-2px);
+        }
+
+        /* Main Form Container */
+        .form-container {
+            width: 100%;
+            padding: 24px;
+            background-color: var(--white);
+        }
+
+        @media (min-width: 1024px) {
+            .form-container {
+                max-width: 680px;
+                border-radius: var(--radius);
+                box-shadow: 0 10px 25px rgba(15, 23, 42, 0.05);
+                padding: 40px;
+            }
+        }
+
+        .section-indicator {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--gold);
+            font-weight: 700;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .section-indicator::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background-color: #e2e8f0;
+        }
+
+        /* Input Form Elements */
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+        }
+
+        .form-input, .form-select, .form-textarea {
+            width: 100%;
+            padding: 14px 16px;
+            font-family: inherit;
+            font-size: 0.95rem;
+            background-color: #f1f5f9;
+            border: 1.5px solid transparent;
+            border-radius: var(--radius);
+            color: var(--text-dark);
+            transition: var(--transition);
+            outline: none;
+        }
+
+        .form-input:focus, .form-select:focus, .form-textarea:focus {
+            background-color: var(--white);
+            border-color: var(--gold);
+            box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.1);
+        }
+
+        /* Department Choice Grid (Custom Modern Radios) */
+        .dept-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+        }
+
+        @media (min-width: 480px) {
+            .dept-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Action Button */
+        .submit-btn {
+            width: 100%;
+            background-color: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 16px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.15);
+            margin-top: 10px;
+        }
+
+        .submit-btn:hover {
+            background-color: #1e293b;
+            transform: translateY(-1px);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        /* Subtle Luxury Footer */
+        .form-footer {
+            text-align: center;
+            font-size: 0.75rem;
+            color: var(--text-light);
+            margin-top: 32px;
+            letter-spacing: 0.5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="wrapper">
+        
+        <header class="hero-section">
+            <span class="cnw-tag">Christ New Wine</span>
+            <h1 class="hero-title">Step Into Your Kingdom Mandate</h1>
+            <p class="hero-subtitle">We are raising prophetic and kingdom agencies. Deploy your gifts, anchor your faith, and serve the ultimate goal of Christ.</p>
+            <a href="#application-form" class="cta-scroll-btn">
+                Begin Application 
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><polyline points="19 12 12 19 5 12"></polyline></svg>
+            </a>
+        </header>
+
+        <main class="form-container" id="application-form">
+            <form action="YOUR_BACKEND_ENDPOINT_HERE" method="POST">
+                
+                <div class="section-indicator">Personal Information</div>
+
+                <div class="form-group">
+                    <label class="form-label" for="full-name">Full Name</label>
+                    <input type="text" id="full-name" name="name" class="form-input" placeholder="John Doe" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="phone">WhatsApp Number</label>
+                    <input type="tel" id="phone" name="phone" class="form-input" placeholder="+234..." required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="email">Email Address</label>
+                    <input type="email" id="email" name="email" class="form-input" placeholder="name@example.com" required>
+                </div>
+
+                <div class="section-indicator">Workforce Deployment</div>
+
+                <div class="form-group">
+                    <label class="form-label" for="primary-dept">Primary Department of Interest</label>
+                    <select id="primary-dept" name="primary_department" class="form-select" required>
+                        <option value="" disabled selected>Select your core calling</option>
+                        <option value="choir">The Choir (Vocalists)</option>
+                        <option value="instrumentalists">Instrumentalists</option>
+                        <option value="technical_crew">Technical & Media Crew</option>
+                        <option value="protocol">Protocol & Ushering</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="secondary-dept">Secondary / Backup Department</label>
+                    <select id="secondary-dept" name="secondary_department" class="form-select" required>
+                        <option value="" disabled selected>Select a backup alignment</option>
+                        <option value="choir">The Choir (Vocalists)</option>
+                        <option value="instrumentalists">Instrumentalists</option>
+                        <option value="technical_crew">Technical & Media Crew</option>
+                        <option value="protocol">Protocol & Ushering</option>
+                        <option value="none">Open to assignment anywhere</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="experience">Share brief details on your skills or past experience</label>
+                    <textarea id="experience" name="experience_details" class="form-textarea" rows="4" placeholder="List any instruments played, vocal parts, technical tools handled, or past protocol experience..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="availability">Availability Commitment</label>
+                    <select id="availability" name="availability" class="form-select" required>
+                        <option value="" disabled selected>Select availability</option>
+                        <option value="weekly">Weekly (All services & rehearsals)</option>
+                        <option value="biweekly">Bi-weekly (Every alternative week)</option>
+                        <option value="special_events">Special & Outdoor Events Only</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="submit-btn">Submit Commitment</button>
+
+            </form>
+
+            <footer class="form-footer">
+                Christ New Wine Body • Structural Kingdom Mandate
+            </footer>
+        </main>
+
+    </div>
+
+    <script>
+        // Smooth scrolling for the landing button to keep experience premium
+        document.querySelector('.cta-scroll-btn').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    </script>
+</body>
+</html>
